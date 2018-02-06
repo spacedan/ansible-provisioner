@@ -1,0 +1,17 @@
+{
+    "app": {
+        "app_name": "mage-server",
+        "pipeline": {
+            "app_type": "DOCKER_RUN",
+            "build_jobs": {
+                "build_target": "http://build.com",
+                "version_control": {
+                    "branch": "master",
+                    "type": "github",
+                    "url": "http://github.com/spacedan/mage-server"
+                }
+            }
+        }
+    },
+    "jenkins_version": ""
+}
