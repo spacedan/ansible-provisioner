@@ -1,6 +1,6 @@
 {
     "app": {
-        "app_name": "mage-server",
+        "app_name": "HiDanny",
         "pipeline": {
             "app_type": "DOCKER_RUN",
             "build_jobs": {
@@ -8,10 +8,19 @@
                 "version_control": {
                     "branch": "master",
                     "type": "github",
-                    "url": "http://github.com/spacedan/mage-server"
+                    "url": "http://somerepo.github.com"
                 }
+            },
+            "deploy_jobs": {
+                "deploy_commands": "docker-compose up -d",
+                "deploy_target": "http://deliver.com"
+            },
+            "test_jobs": {
+			"unit_test": {
+				"test_command": "npm test"
+                	}
             }
         }
     },
-    "jenkins_version": ""
+    "jenkins_version": "2.89.2"
 }
