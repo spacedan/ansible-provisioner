@@ -1,7 +1,7 @@
 {
     "jenkins": {
-      "jenkins_version": "2.89.2",
-      "jenkins_host": "http://jenkins.com"
+      "jenkins_version": "2.107.1",
+      "jenkins_host": "ubuntu"
     },
     
     "gocd": {
@@ -9,21 +9,21 @@
       "gocd_host": "http://gocd.com"
     },
     "app": {
-        "app_name": "APP_NAME",
+        "app_name": "mage",
         "pipeline": {
-            "app_type": "DOCKER_RUN",
+            "app_type": "DOCKER_COMPOSE",
             "build_jobs": {
-                "build_target": "http://build.com",
+                "build_target": "ubuntu",
                 "version_control": {
                     "branch": "master",
                     "type": "github",
-                    "url": "http://somerepo.github.com"
+                    "url": "https://github.com/spacedan/mage-server"
                 },
                 "build_command": "docker build ."
             },
             "deploy_jobs": {
                 "deploy_commands": "docker-compose up -d",
-                "dev_environment": "http://deliver.com"
+                "dev_environment": "ubuntu2"
             },
             "test_jobs": {
 			        "unit_test": {
