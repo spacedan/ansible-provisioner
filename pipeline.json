@@ -33,12 +33,12 @@
             "test_jobs": {
 			        "unit_test": {
 				        "test_command": "npm test"
-                },
-              "sonarqube": {
-                "sonarqube_server_url": "http://sonarqube:9000",
-                "project_key": "mage_key",
-                "authentication_token": "AUTH_TOKEN"
-              }
+                        },
+                    "sonarqube": {
+                        "sonarqube_server_url": "http://sonarqube:9000",
+                        "project_key": "mage_key",
+                        "authentication_token": "AUTH_TOKEN"
+                        }
             }
         }
     }
