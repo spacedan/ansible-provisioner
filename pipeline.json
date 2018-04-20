@@ -1,0 +1,45 @@
+{
+    "jenkins": {
+      "jenkins_version": "2.107.1",
+      "jenkins_host": "10.205.156.239",
+      "jenkins_host_user": "ubuntu"
+    },
+    
+    "gocd": {
+      "gocd_version": "1.0.0",
+      "gocd_host": "http://gocd.com"
+    },
+    "app": {
+        "app_name": "mage",
+        "pipeline": {
+            "app_type": "DOCKER_COMPOSE",
+            "build_jobs": {
+                "version_control": {
+                    "branch": "master",
+                    "type": "github",
+                    "url": "https://github.com/spacedan/mage-server"
+                },
+                "build_command": "docker build ."
+            },
+            "deploy_jobs": {
+                "deploy_commands": "docker-compose up -d",
+                "deploy_target": {
+                    "config_name":"10.205.156.228",
+                    "hostname":"10.205.156.228",
+                    "username":"ubuntu",
+                    "key":"-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAwsxNXFNPKBTyhx8uE4mlyDEtFMYiNoG3wNGr31QZtU31zPfhK0SjuSYPj+WvPV9+rOWlhneWgYYmUbd0x/ibrA9eHP2kp/ZIKYAfXHnq7dGEnbvIgsSDYQk7duDSlnVK8dtrNLsODjYWU5sLyuSk7BoCAdnepLUPZCWLIy0dGDEYvGZgi8+O/TZGj63NElTNAB79xW/yBX8skn8AMZYWT4z+wAkz0X+mIOjUBSljAiE5odrTBEl3HmwCwLwMq/apd2ALH6+EkAgvE9mi+anlEXr8rXpnWpIGZGFEYd3Rvh3c9rLTBBPqB59M+NNavKVEU+zmkOcM0pOkLxu3E1kSIwIDAQABAoIBAA24ZhqCo6inEQ4DXDN0FoErNYmpCu/b4x1ppzlrqwPiIdX1/54Uj5OS4rW378fa2glDg40dDzTARiKrUUZkdFKCIpbYJqjN5/dEVvEkhS+K+lRBzbWoMbi79bxByZNfX4/5bGuiYTMPDDOHUCVSRWt7yXhn6A6h0huzqUEpBEuXyjL/VtkaGbOXpcKzaq2KEI4Q1A/UaKm9cZCPw/bpj4JI+2BlFFdXA+F3q1ynnSWEwkBwerL/9RWH4o/ydSNstBp4Q9FjnXlqClLKLNLfiVQ4pVA+4tfoEtsNjNHMk+AbMeGLR+shUNIquut/lfLMBjc8BtRyYd6cv/U17HytEoECgYEA6CEw4w9qAn4bVnbfAO0JKtlGKB5SeR9rdXZ+3Alax8gGxNM/tUyE0YpjYcqB0nDChIBwFDxtcVT07aZXESImpWhO78hB4c6iwSNN1FAmcIq+Bu8gj4RgvVRk0WeABNlDBfGoXvhgMwx7Qmm1BQc9M6yF8aW7OmdkNS2dZ6Tny8sCgYEA1tRbizchgt0W3qnS75YrWdNcC00F7iGiZSPptN5GfHVOc/hMHY2qyltQ0ydpWbYW2FYQD8e2Tj7DY6SK20R/SxeysvyBqgTckg2UQi5fumse7UOp+hEKFsD9V/MwrLCNh8hqNLA8l0l5Y2RjBiinArgjLpHs6eDV5AbvWmELuAkCgYAkUqVCsnPFJhSDCCDHFVA86zjGKFCBcYAwJjWdmr0gy9T7UY8DgJC79Sqt77E2y7w0XaCsGfSKKmAVG9U98hkYAuVvMefVPK9NB4gzM8OAEsW/cgWnT3CPz7fi6I4otBJ/yJuvGLB87HQRJVdVDRfvkQx4jpVogys0AwpBYJWA1wKBgQDWQy6ahv3xWzj4E0DCnG/YQynGS6fifcFORqdNMXPzpbv9hmPEBguVj8XpE6HLTAU094FFe9aj641M0Et9ra+X4ablRVq9i+PB97Eq4L2xXC2YTqg1NNFvKESFd5PQaLZ/+q+SpUOJUEq1iuYIunr4B1dvlzNHgGtT5mbLKYdaoQKBgHwK1R+aCC8HhMsC4CO5FOwZ8SxtlNyiATHbZNmxc+wd2pdL0aN27+5nCWQg7U8H2vRxh38FKCzyO/99A84k6nS+NI+KGd3IwYQCCISdrmL2IbnTNiDmOxSKC3OYb2MET6CIDFm8Zv47V5HmCzxF2LWIclGCBxuQ+9n6BBUYzkLZ"
+                }
+            },
+            "test_jobs": {
+			        "unit_test": {
+				        "test_command": "npm test"
+                        },
+                    "sonarqube": {
+                        "sonarqube_server_url": "http://sonarqube:9000",
+                        "project_key": "mage_key",
+                        "authentication_token": "AUTH_TOKEN"
+                        }
+            }
+        }
+    }
+}

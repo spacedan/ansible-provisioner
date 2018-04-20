@@ -1,0 +1,48 @@
+#!/usr/bin/env ansible-playbook
+- hosts: jenkins 
+
+  gather_facts: no
+
+  pre_tasks:
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+  - name: Gather facts
+    setup:
+
+  vars:
+    jenkins_version: "2.107.1"
+    jenkins_url: "http://{{ inventory_hostname }}"
+    jenkins_port: 8080
+    jenkins_install_via: "apt"
+    jenkins_jobs: 
+      - mage-build
+      - mage-deploy
+      - mage-unit-test
+    jenkins_config_owner: "jenkins"
+    jenkis_config_group: "jenkins"
+    jenkins_home: "/var/jenkins_home"
+    jenkins_plugins:
+      - build-pipeline-plugin
+      - publish-over-ssh
+      - copyartifact
+      - git
+      - git-client
+      - github
+      - gitlab-plugin
+    jenkins_include_custom_files: True
+    jenkins_custom_files: 
+      - src: "jenkins.plugins.publish_over_ssh.BapSshPublisherPlugin.xml"
+        dest: "jenkins.plugins.publish_over_ssh.BapSshPublisherPlugin.xml"
+
+  roles:
+   - zaxos.docker-ce-ansible-role
+   - emmetog.jenkins
+
+  tasks:
+    - name: users | adding docker users (for use without sudo)
+      user:
+        name: "jenkins"
+        append: yes
+        groups: docker
+      become: true
