@@ -303,7 +303,7 @@ def main():
     nodejs. Data will be extracted from json and implanted in the xml configs
     '''
 
-    json_file = 'pipeline.json'
+    json_file = sys.argv[1]
 
     b = Builder(json_file)
     b.logger.info('loading json file {0}'.format(json_file))
